@@ -19,7 +19,7 @@ function cadastrarDados() {
     const formaPagamentoSelecionadaElement = document.querySelector('input[name="pagamento"]:checked');
     const formaPagamentoSelecionada = formaPagamentoSelecionadaElement ? formaPagamentoSelecionadaElement.value : null;
     const dataFormatada = formatarData(new Date(data));
-    
+
     // Verificar se campos obrigatórios estão preenchidos
     if (!nome || !idade || !cep || !numero || !formaPagamentoSelecionada || !medico || !data || !hora || !email) {
         alert('Por favor, preencha todos os campos obrigatórios.');
@@ -89,44 +89,53 @@ function buscaCepAutomatico() {
     }
 }
 
-
-
-
 // Função para listar os dados cadastrados
 function listarDados() {
-    const lista = document.getElementById('lista-dados');
+    const tabela = document.getElementById('tabela-dados');
 
-    if (!lista) {
-        console.error("Elemento 'lista-dados' não encontrado.");
+    if (!tabela) {
+        console.error("Elemento 'tabela-dados' não encontrado.");
         return;
     }
-    // Limpar a lista antes de atualizar
-    lista.innerHTML = '';
 
-    // Iterar sobre os dados cadastrados e criar elementos na lista
+    // Limpar a tabela antes de atualizar
+    tabela.innerHTML = '';
+
+    // Criação do cabeçalho da tabela
+    const cabecalho = document.createElement('tr');
+    cabecalho.innerHTML = '<th>Paciente</th><th>Especialidade</th><th>Data</th><th>Hora</th><th>Forma de Pagamento</th><th>Ações</th>';
+    tabela.appendChild(cabecalho);
+
+    // Iterar sobre os dados cadastrados e criar linhas na tabela
     dadosCadastrados.forEach((paciente, index) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `Paciente: ${paciente.nome} - Especilidade: ${paciente.medico} - Data: ${paciente.data} - Hora: ${paciente.hora} - Forma de Pagamento: ${paciente.conv ? 'Convênio' : 'Particular'}`;
-
-        // Adicionar botões para editar e excluir
-        const editarButton = document.createElement('button');
-        editarButton.textContent = 'Editar';
-        editarButton.addEventListener('click', () => editarDados(index));
-
-        const excluirButton = document.createElement('button');
-        excluirButton.textContent = 'Excluir';
-        excluirButton.addEventListener('click', () => excluirDados(index));
-
-        listItem.appendChild(editarButton);
-        listItem.appendChild(excluirButton);
-
-        lista.appendChild(listItem);
+        const linha = document.createElement('tr');
+        linha.innerHTML = `<td>${paciente.nome}</td><td>${paciente.medico}</td><td>${paciente.data}</td><td>${paciente.hora}</td><td>${paciente.conv ? 'Convênio' : 'Particular'}</td><td><button onclick="editarDados(${index})">Editar</button><button onclick="excluirDados(${index})">Excluir</button></td>`;
+        tabela.appendChild(linha);
     });
 }
 
 // Função para editar dados cadastrados
 function editarDados(index) {
     // Implemente a lógica para preencher o formulário com os dados do paciente selecionado
+    const paciente = dadosCadastrados[index];
+    document.getElementById('nome').value = paciente.nome;
+    document.getElementById('idade').value = paciente.idade;
+    document.getElementById('email').value = paciente.email;
+    document.getElementById('cep').value = paciente.cep;
+    document.getElementById('n').value = paciente.numero;
+    document.getElementById('rua').value = paciente.rua;
+    document.getElementById('compl').value = paciente.compl;
+    document.getElementById('medico').value = paciente.medico;
+    document.getElementById('data').value = paciente.data;
+    document.getElementById('hr').value = paciente.hora;
+    document.getElementById('Convenio').checked = paciente.conv;
+    document.getElementById('Particular').checked = paciente.part;
+
+    // Remover o paciente da lista para evitar duplicatas
+    dadosCadastrados.splice(index, 1);
+
+    // Atualizar a lista após a exclusão
+    listarDados();
 }
 
 // Função para excluir dados cadastrados

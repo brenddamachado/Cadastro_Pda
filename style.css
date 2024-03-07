@@ -82,6 +82,7 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin: 2px;
 }
 
 button:hover {
@@ -103,4 +104,27 @@ legend {
 
 .escolha{
     padding: 4px;
+}
+
+#tabela-dados {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#tabela-dados th, #tabela-dados td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: center;}
+
+#tabela-dados th {
+  background-color: #f2f2f2;
+}
+
+#tabela-dados tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#tabela-dados tbody tr:hover {
+  background-color: #e6f7ff;
 }
