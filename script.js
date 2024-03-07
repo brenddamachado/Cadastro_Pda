@@ -3,6 +3,7 @@ const dadosCadastrados = [];
 
 // Função para cadastrar um novo dado
 function cadastrarDados() {
+    // Obter valores dos campos
     const nome = document.getElementById('nome').value;
     const idade = document.getElementById('idade').value;
     const email = document.getElementById('email').value;
@@ -15,7 +16,15 @@ function cadastrarDados() {
     const hora = document.getElementById('hr').value;
     const conv = document.getElementById('Convenio').checked;
     const part = document.getElementById('Particular').checked;
-
+    const formaPagamentoSelecionadaElement = document.querySelector('input[name="pagamento"]:checked');
+    const formaPagamentoSelecionada = formaPagamentoSelecionadaElement ? formaPagamentoSelecionadaElement.value : null;
+    const dataFormatada = formatarData(new Date(data));
+    
+    // Verificar se campos obrigatórios estão preenchidos
+    if (!nome || !idade || !cep || !numero || !formaPagamentoSelecionada || !medico || !data || !hora || !email) {
+        alert('Por favor, preencha todos os campos obrigatórios.');
+        return;
+    }
     // Criar um objeto com os dados do paciente
     const paciente = {
         nome,
@@ -26,7 +35,7 @@ function cadastrarDados() {
         rua,
         compl,
         medico,
-        data,
+        data: formatarData(new Date(data)),
         hora,
         conv,
         part
@@ -41,6 +50,15 @@ function cadastrarDados() {
     // Atualizar a lista de dados cadastrados
     listarDados();
 }
+
+function formatarData(data) {
+    const dia = String(data.getDate()).padStart(2, '0');
+    const mes = String(data.getMonth() + 1).padStart(2, '0'); // Lembre-se que os meses começam do zero
+    const ano = data.getFullYear();
+
+    return `${dia}/${mes}/${ano}`;
+}
+
 // Função para buscar o CEP automaticamente
 function buscaCepAutomatico() {
     // Pega o valor do CEP
@@ -88,7 +106,7 @@ function listarDados() {
     // Iterar sobre os dados cadastrados e criar elementos na lista
     dadosCadastrados.forEach((paciente, index) => {
         const listItem = document.createElement('li');
-        listItem.textContent = `${paciente.nome} - ${paciente.medico} - ${paciente.data} - ${paciente.hora}`;
+        listItem.textContent = `Paciente: ${paciente.nome} - Especilidade: ${paciente.medico} - Data: ${paciente.data} - Hora: ${paciente.hora} - Forma de Pagamento: ${paciente.conv ? 'Convênio' : 'Particular'}`;
 
         // Adicionar botões para editar e excluir
         const editarButton = document.createElement('button');
