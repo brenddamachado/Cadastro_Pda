@@ -1,44 +1,106 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-header{
-    background-color:#b3d5e0;
+header {
+  background-color: #b3d5e0;
 }
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px;
-   
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
 }
 
-
-.nome{
-    color: white;
-    margin-left: 5%;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+.nome {
+  color: white;
+  margin-left: 5%;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-.navegacao{
-    list-style: none;
-    display: flex;
-    margin-right: 5%;
+.navegacao {
+  list-style: none;
+  display: flex;
+  margin-right: 5%;
 }
 
-.item{
-    margin-left: 50px; }
+.item {
+  margin-left: 50px;
+}
 
-
-.redirecionar{
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    text-decoration: none; 
-    color: white;
-    font-size: 20px;
+.redirecionar {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
 }
 
 /* Estilo para links ao passar o mouse */
 .redirecionar:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5%;
+}
+
+#cadastroForm {
+  width: 300px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  font-weight: bold;
+
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+legend {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.quadrado {
+  margin-right: 5px; /* Espaçamento entre a checkbox e o label */
+}
+
+.opçoes {
+  display: inline-block;
+}
+
+.escolha{
+    padding: 4px;
 }

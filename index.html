@@ -22,35 +22,55 @@
     <h1>Cadastro Médico</h1>
 
   <form id="cadastroForm">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" required>
+    <label class="label" for="nome">Nome:</label>
+    <input class="input" type="text" id="nome" required>
 
-    <label for="idade">Idade:</label>
-    <input type="number" id="idade" required>
+    <label class="label" for="idade">Idade:</label>
+    <input class="input" type="number" id="idade" required>
 
-    <label for="medico">Especialidade</label>
-    <input type="text" id="medico" required>
+    <label class="label" for="email">E-mail:</label>
+    <input class="input" type="email" name="email" id="email">
 
-    <label for="Cep">Cep</label>
-    <input type="text" id="cep" required>
+    <label class="label" for="Cep">Cep:</label>
+    <input class="input" type="text" id="cep" required>
 
-    <label for="rua">Rua</label>
-    <input type="text" id="rua" >
+    <label class="label" for="rua">Rua:</label>
+    <input class="input" type="text" id="rua" >
 
-    <label for="n"> Nº</label>
-    <input type="number" id="n">
+    <label class="label" for="n"> Nº:</label>
+    <input class="input" type="number" id="n" required>
     
-    <label for="compl">Complemento</label>
-    <input type="text" id="compl">
-    
+    <label class="label" for="compl">Complemento:</label>
+    <input class="input" type="text" id="compl">
 
-    <label for="conv">Convenio ou particular?</label>
-    <input type="checkbox" name="conv" id="Convenio">
+    <label class="label" for="medico">Especialidade:</label>
+    <input class="input" type="text" id="medico" required>
 
-    <button type="button" onclick="cadastrarPaciente()">Cadastrar</button>
+    <fieldset>
+        <legend>Pagamento:</legend>
+      
+        <div class="escolha">
+          <input class="quadrado" type="checkbox" id="Convenio" name="Convenio" checked />
+          <label class="opçoes" for="Convenio">Convenio</label>
+        </div>
+      
+        <div  class="escolha">
+          <input  class="quadrado" type="checkbox" id="Particular" name="Particular" />
+          <label class="opçoes" for="Particular">Particular</label>
+        </div>
+      </fieldset>
+
+    <label class="label" for="data"> Data</label>
+    <input class="input" type="date" name="data" id="data" required>
+
+    <label  class="label" for="hr">Hora</label>
+    <input class="input" type="time" name="hr" id="hr" required>
+
+    <button type="button">Cadastrar</button>
   </form>
 
 </main>
+<ul id="lista-dados"></ul>
 
    <script src="script.js"></script> 
 </body>
