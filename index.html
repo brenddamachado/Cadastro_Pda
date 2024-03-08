@@ -12,36 +12,18 @@
         <nav>
             <h1 class="nome">Consultório</h1>
             <ul class="navegacao">
-                <li class="item"><a class="redirecionar" href="#slista">Lista</a></li>
-                <li class="item"><a class="redirecionar" href="#paciente">Adicionar paciente</a></li>
+                <li class="item"><a class="redirecionar" href="lista.html">Lista</a></li>
+                <li class="item"><a class="redirecionar" href="index.html">Adicionar paciente</a></li>
             </ul>
         </nav>
     </header>
     
 <main>
-    <h1>Cadastro Médico</h1>
+    <h1>Agendamento</h1>
 
   <form id="cadastroForm">
     <label class="label" for="nome">Nome:</label>
     <input class="input" type="text" id="nome" required>
-
-    <label class="label" for="idade">Idade:</label>
-    <input class="input" type="number" id="idade" required>
-
-    <label class="label" for="email">E-mail:</label>
-    <input class="input" type="email" name="email" id="email">
-
-    <label class="label" for="Cep">Cep:</label>
-    <input class="input" type="text" id="cep" required>
-
-    <label class="label" for="rua">Rua:</label>
-    <input class="input" type="text" id="rua" >
-
-    <label class="label" for="n"> Nº:</label>
-    <input class="input" type="number" id="n" required>
-    
-    <label class="label" for="compl">Complemento:</label>
-    <input class="input" type="text" id="compl">
 
     <label class="label" for="medico">Especialidade:</label>
     <input class="input" type="text" id="medico" required>
@@ -70,20 +52,24 @@
   </form>
 
 </main>
-<table id="tabela-dados">
-  <thead>
-      <tr>
-          <th>Nome</th>
-          <th>Especialidade</th>
-          <th>Data</th>
-          <th>Hora</th>
-          <th>Forma de Pagamento</th>
-          <th>Ações</th>
-      </tr>
-  </thead>
-  <tbody id="corpo-tabela-dados"></tbody>
-</table>
+<main>
+    <h1>Agendados</h1>
 
+    <table id="tabela-dados">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Especialidade</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Forma de Pagamento</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="corpo-tabela-dados"></tbody>
+    </table>
+
+</main>
 
    <script src="script.js"></script> 
 </body>

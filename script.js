@@ -5,37 +5,34 @@ const dadosCadastrados = [];
 function cadastrarDados() {
     // Obter valores dos campos
     const nome = document.getElementById('nome').value;
-    const idade = document.getElementById('idade').value;
-    const email = document.getElementById('email').value;
-    const cep = document.getElementById('cep').value;
-    const numero = document.getElementById('n').value;
-    const rua = document.getElementById('rua').value;
-    const compl = document.getElementById('compl').value;
     const medico = document.getElementById('medico').value;
-    const data = document.getElementById('data').value;
+    const rawDate = document.getElementById('data').value; // Declare rawDate 
     const hora = document.getElementById('hr').value;
     const conv = document.getElementById('Convenio').checked;
     const part = document.getElementById('Particular').checked;
     const formaPagamentoSelecionadaElement = document.querySelector('input[name="pagamento"]:checked');
     const formaPagamentoSelecionada = formaPagamentoSelecionadaElement ? formaPagamentoSelecionadaElement.value : null;
-    const dataFormatada = formatarData(new Date(data));
 
     // Verificar se campos obrigatórios estão preenchidos
-    if (!nome || !idade || !cep || !numero || !formaPagamentoSelecionada || !medico || !data || !hora || !email) {
+    if (!nome || !formaPagamentoSelecionada || !medico || !rawDate || !hora) {
         alert('Por favor, preencha todos os campos obrigatórios.');
         return;
     }
-    // Criar um objeto com os dados do paciente
+
+    // Convertendo a string da data para um objeto de data
+    const dateParts = rawDate.split("/");
+    const dataFormatada = new Date(`${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`);
+
+    // Obter o dia, mês e ano da data
+    const dia = dataFormatada.getDate();
+    const mes = dataFormatada.getMonth() + 1; // Lembre-se de que os meses são zero indexados
+    const ano = dataFormatada.getFullYear();
+
+    // Criar um objeto com os dados do paciente e a data formatada
     const paciente = {
         nome,
-        idade,
-        email,
-        cep,
-        numero,
-        rua,
-        compl,
         medico,
-        data: formatarData(new Date(data)),
+        data: `${dia}/${mes}/${ano}`, // Criar uma string formatada com dia, mês e ano,
         hora,
         conv,
         part
@@ -50,81 +47,32 @@ function cadastrarDados() {
     // Atualizar a lista de dados cadastrados
     listarDados();
 }
-
-function formatarData(data) {
-    const dia = String(data.getDate()).padStart(2, '0');
-    const mes = String(data.getMonth() + 1).padStart(2, '0'); // Lembre-se que os meses começam do zero
-    const ano = data.getFullYear();
-
-    return `${dia}/${mes}/${ano}`;
-}
-
-// Função para buscar o CEP automaticamente
-function buscaCepAutomatico() {
-    // Pega o valor do CEP
-    const cepInput = document.getElementById('cep');
-    let cep = cepInput.value;
-
-    // Remove caracteres não numéricos do CEP
-    cep = cep.replace(/\D/g, '');
-
-    // Atualiza o valor do campo de CEP
-    cepInput.value = cep;
-
-    // Verifica se o CEP possui a quantidade correta de dígitos
-    if (cep.length === 8) {
-        // Faz uma requisição à API ViaCEP
-        fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.erro) {
-                    alert('CEP não encontrado. Verifique o CEP digitado.');
-                } else {
-                    // Preenche os campos da rua e complemento com os valores obtidos
-                    document.getElementById('rua').value = data.logradouro;
-                    document.getElementById('compl').value = data.complemento;
-                }
-            })
-            .catch(error => console.error('Erro na requisição:', error));
-    }
-}
-
 // Função para listar os dados cadastrados
 function listarDados() {
     const tabela = document.getElementById('tabela-dados');
+    const corpoTabela = document.getElementById('corpo-tabela-dados');
 
-    if (!tabela) {
-        console.error("Elemento 'tabela-dados' não encontrado.");
+    if (!tabela || !corpoTabela) {
+        console.error("Elementos não encontrados.");
         return;
     }
 
-    // Limpar a tabela antes de atualizar
-    tabela.innerHTML = '';
-
-    // Criação do cabeçalho da tabela
-    const cabecalho = document.createElement('tr');
-    cabecalho.innerHTML = '<th>Paciente</th><th>Especialidade</th><th>Data</th><th>Hora</th><th>Forma de Pagamento</th><th>Ações</th>';
-    tabela.appendChild(cabecalho);
+    // Limpar o corpo da tabela antes de atualizar
+    corpoTabela.innerHTML = '';
 
     // Iterar sobre os dados cadastrados e criar linhas na tabela
     dadosCadastrados.forEach((paciente, index) => {
         const linha = document.createElement('tr');
         linha.innerHTML = `<td>${paciente.nome}</td><td>${paciente.medico}</td><td>${paciente.data}</td><td>${paciente.hora}</td><td>${paciente.conv ? 'Convênio' : 'Particular'}</td><td><button onclick="editarDados(${index})">Editar</button><button onclick="excluirDados(${index})">Excluir</button></td>`;
-        tabela.appendChild(linha);
+        corpoTabela.appendChild(linha);
     });
 }
-
+document.addEventListener('DOMContentLoaded', listarDados);
 // Função para editar dados cadastrados
 function editarDados(index) {
     // Implemente a lógica para preencher o formulário com os dados do paciente selecionado
     const paciente = dadosCadastrados[index];
     document.getElementById('nome').value = paciente.nome;
-    document.getElementById('idade').value = paciente.idade;
-    document.getElementById('email').value = paciente.email;
-    document.getElementById('cep').value = paciente.cep;
-    document.getElementById('n').value = paciente.numero;
-    document.getElementById('rua').value = paciente.rua;
-    document.getElementById('compl').value = paciente.compl;
     document.getElementById('medico').value = paciente.medico;
     document.getElementById('data').value = paciente.data;
     document.getElementById('hr').value = paciente.hora;
@@ -154,4 +102,3 @@ function limparFormulario() {
 
 // Adicionar um ouvinte de evento para o botão de cadastrar
 document.querySelector('button').addEventListener('click', cadastrarDados);
-document.getElementById('cep').addEventListener('input', buscaCepAutomatico);
