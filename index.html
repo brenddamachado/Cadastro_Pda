@@ -12,13 +12,14 @@
         <nav>
             <h1 class="nome">Consultório</h1>
             <ul class="navegacao">
-                <li class="item"><a class="redirecionar" href="lista.html">Lista</a></li>
-                <li class="item"><a class="redirecionar" href="index.html">Adicionar paciente</a></li>
+                <li class="item"><a class="redirecionar" href="#formulario">Agendar paciente</a></li>
+
+                <li class="item"><a class="redirecionar" href="#tabela-dados">Agendados</a></li>
             </ul>
         </nav>
     </header>
     
-<main>
+<main id="formulario">
     <h1>Agendamento</h1>
 
   <form id="cadastroForm">
@@ -52,7 +53,7 @@
   </form>
 
 </main>
-<main>
+<section> 
     <h1>Agendados</h1>
 
     <table id="tabela-dados">
@@ -69,7 +70,7 @@
         <tbody id="corpo-tabela-dados"></tbody>
     </table>
 
-</main>
+</section>
 
    <script src="script.js"></script> 
 </body>

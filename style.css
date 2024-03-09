@@ -41,7 +41,7 @@ nav {
   text-decoration: underline;
 }
 
-main {
+main, section{
   display: flex;
   align-items: center;
   justify-content: center;
