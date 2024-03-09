@@ -2,10 +2,29 @@
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  
+}
+.apresentacao{
+  background-image: url(./img/fundo-home-clinica-min-v2.jpg);
+}
+.section_inicial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  flex-direction: column-reverse;
+
+}
+
+.section_inicial h1 {
+  margin-left: 20px;
+  margin-bottom: 5%;
+  color: white;
+  text-shadow: 7px 7px 6px rgba(0, 0, 0, 0.5);
 }
 
 header {
-  background-color: #b3d5e0;
+  background-color: #00adbd;
 }
 nav {
   display: flex;
@@ -41,7 +60,7 @@ nav {
   text-decoration: underline;
 }
 
-main, section{
+#formulario, .section_agendar{
   display: flex;
   align-items: center;
   justify-content: center;
