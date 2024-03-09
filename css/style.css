@@ -2,10 +2,10 @@
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  
+
 }
 .apresentacao{
-  background-image: url(./img/fundo-home-clinica-min-v2.jpg);
+  background-image: url(/img/fundo-home-clinica-min-v2.jpg);
 }
 .section_inicial {
   display: flex;
@@ -95,7 +95,7 @@ nav {
 }
 
 button {
-  background-color: #4caf50;
+  background-color: #00adbd;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -105,7 +105,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #00adbd;
 }
 
 legend {

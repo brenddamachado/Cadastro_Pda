@@ -74,8 +74,11 @@ function editarDados(index) {
     const paciente = dadosCadastrados[index];
     document.getElementById('nome').value = paciente.nome;
     document.getElementById('medico').value = paciente.medico;
-    document.getElementById('data').value = paciente.data;
-    document.getElementById('hr').value = paciente.hora;
+    const dateParts = paciente.data.split("/");
+    const dataFormatada = new Date(`${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`);
+    const dataFormatadaString = `${dataFormatada.getFullYear()}-${(dataFormatada.getMonth() + 1).toString().padStart(2, '0')}-${dataFormatada.getDate().toString().padStart(2, '0')}`;
+    document.getElementById('data').value = dataFormatadaString;
+        document.getElementById('hr').value = paciente.hora;
     document.getElementById('Convenio').checked = paciente.conv;
     document.getElementById('Particular').checked = paciente.part;
 
