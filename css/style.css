@@ -148,16 +148,32 @@ legend {
   background-color: #e6f7ff;
 }
 
+
+/* Adicione as seguintes regras CSS ao seu arquivo style.css */
+
+/* Estilo para dispositivos de tela pequena */
 @media (max-width: 768px) {
+  .section_inicial {
+    padding: 5%;
+    flex-direction: column;
+    text-align: center;
+  }
   .navegacao {
-    display: none; /* Hide navigation on smaller screens */
+    gap: 15px;
+    flex-direction: column;  }
+
+  .item {
+    margin-left: 0;
   }
 
-  h1.nome {
-    margin-top: 15px; /* Adjust margin to center h1 */
+
+  header {
+    height: auto;
   }
 
-  nav{
-    justify-content: center;
+  .apresentacao {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
   }
 }
